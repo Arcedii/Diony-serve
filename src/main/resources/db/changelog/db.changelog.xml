@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <!-- ChangeSet pentru crearea tabelei pasageri -->
+    <changeSet id="1-create-pasager-table" author="autor">
+        <createTable tableName="pasageri">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="prenume" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nume" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefon" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet pentru crearea tabelei routes -->
+    <changeSet id="2-create-route-table" author="autor">
+        <createTable tableName="routes">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="oras_plecare" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="oras_venire" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="loc_plecare" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="loc_venire" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ora_plecare" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ora_venire" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="numar_ore_drum" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pret_bilet" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet pentru crearea tabelei bilete -->
+    <changeSet id="3-create-bilet-table" author="autor">
+        <createTable tableName="bilete">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="data_cumparare" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pasager_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ruta_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Foreign key pentru legătura cu tabela pasageri -->
+        <addForeignKeyConstraint constraintName="fk_bilet_pasager"
+                                 baseTableName="bilete" baseColumnNames="pasager_id"
+                                 referencedTableName="pasageri" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <!-- Foreign key pentru legătura cu tabela routes -->
+        <addForeignKeyConstraint constraintName="fk_bilet_route"
+                                 baseTableName="bilete" baseColumnNames="ruta_id"
+                                 referencedTableName="routes" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>
