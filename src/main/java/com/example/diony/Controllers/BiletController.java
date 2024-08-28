@@ -49,4 +49,13 @@ public class BiletController {
     public List<Bilet> getToateBiletele() {
         return biletService.getToateBiletele();
     }
+
+    @GetMapping("/pasager/{pasagerId}")
+    public ResponseEntity<List<Bilet>> getBileteByPasagerId(@PathVariable Long pasagerId) {
+        List<Bilet> bilete = biletService.getBileteByPasagerId(pasagerId);
+        if (bilete.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(bilete);
+    }
 }

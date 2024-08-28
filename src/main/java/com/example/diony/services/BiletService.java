@@ -42,4 +42,8 @@ public class BiletService {
     public List<Bilet> getToateBiletele() {
         return biletRepository.findAll();
     }
+
+    public List<Bilet> getBileteByPasagerId(Long pasagerId) {
+        return biletRepository.findByPasagerId(pasagerId);
+    }
 }
