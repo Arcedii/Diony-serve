@@ -1,5 +1,6 @@
 package com.example.diony.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class Pasager {
     private String telefon;
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pasager", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Bilet> bilete = new ArrayList<>();
 
