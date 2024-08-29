@@ -1,7 +1,9 @@
 package com.example.diony.services;
 
+import com.example.diony.dao.PasagerRepository;
 import com.example.diony.entity.Bilet;
 import com.example.diony.dao.BiletRepository;
+import com.example.diony.entity.Pasager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class BiletService {
 
     @Autowired
     private BiletRepository biletRepository;
+
+    @Autowired
+    private PasagerRepository pasagerRepository;
 
     public Bilet adaugaBilet(Bilet bilet) {
         return biletRepository.save(bilet);
@@ -45,5 +50,15 @@ public class BiletService {
 
     public List<Bilet> getBileteByPasagerId(Long pasagerId) {
         return biletRepository.findByPasagerId(pasagerId);
+    }
+
+    public List<Bilet> getTicketsByPassengerId(Long pasagerId) {
+        Pasager
+                pasager = pasagerRepository.findById(pasagerId).orElse(null);
+        if (pasager != null) {
+            return biletRepository.findByPasager(pasager);
+        } else {
+            return null; // или выбросьте исключение
+        }
     }
 }

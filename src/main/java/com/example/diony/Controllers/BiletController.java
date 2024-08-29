@@ -51,9 +51,9 @@ public class BiletController {
     }
 
     @GetMapping("/pasager/{pasagerId}")
-    public ResponseEntity<List<Bilet>> getBileteByPasagerId(@PathVariable Long pasagerId) {
-        List<Bilet> bilete = biletService.getBileteByPasagerId(pasagerId);
-        if (bilete.isEmpty()) {
+    public ResponseEntity<List<Bilet>> getTicketsByPassengerId(@PathVariable Long pasagerId) {
+        List<Bilet> bilete = biletService.getTicketsByPassengerId(pasagerId);
+        if (bilete == null || bilete.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(bilete);
