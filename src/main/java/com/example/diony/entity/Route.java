@@ -1,8 +1,10 @@
 package com.example.diony.entity;
 
-import jakarta.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "routes")
@@ -12,46 +14,58 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Oras orasPlecare;
-
-    @Enumerated(EnumType.STRING)
-    private Oras orasVenire;
-
-    private String locPlecare;
-    private String locVenire;
-
-    private LocalDateTime oraPlecare;
-    private LocalDateTime oraVenire;
-    private Integer numarOreDrum;
-
-    private BigDecimal pretBilet;
+    private String field1; // например, Din
+    private String field2; // например, Destinatia
+    private String field3; // например, Ora plecării
+    private String field4; // например, Locul plecării
+    private String field5; // например, Pret
 
     // Геттеры и сеттеры
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Oras getOrasPlecare() { return orasPlecare; }
-    public void setOrasPlecare(Oras orasPlecare) { this.orasPlecare = orasPlecare; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Oras getOrasVenire() { return orasVenire; }
-    public void setOrasVenire(Oras orasVenire) { this.orasVenire = orasVenire; }
+    public String getField1() {
+        return field1;
+    }
 
-    public String getLocPlecare() { return locPlecare; }
-    public void setLocPlecare(String locPlecare) { this.locPlecare = locPlecare; }
+    public void setField1(String field1) {
+        this.field1 = field1;
+    }
 
-    public String getLocVenire() { return locVenire; }
-    public void setLocVenire(String locVenire) { this.locVenire = locVenire; }
+    public String getField2() {
+        return field2;
+    }
 
-    public LocalDateTime getOraPlecare() { return oraPlecare; }
-    public void setOraPlecare(LocalDateTime oraPlecare) { this.oraPlecare = oraPlecare; }
+    public void setField2(String field2) {
+        this.field2 = field2;
+    }
 
-    public LocalDateTime getOraVenire() { return oraVenire; }
-    public void setOraVenire(LocalDateTime oraVenire) { this.oraVenire = oraVenire; }
+    public String getField3() {
+        return field3;
+    }
 
-    public Integer getNumarOreDrum() { return numarOreDrum; }
-    public void setNumarOreDrum(Integer numarOreDrum) { this.numarOreDrum = numarOreDrum; }
+    public void setField3(String field3) {
+        this.field3 = field3;
+    }
 
-    public BigDecimal getPretBilet() { return pretBilet; }
-    public void setPretBilet(BigDecimal pretBilet) { this.pretBilet = pretBilet; }
+    public String getField4() {
+        return field4;
+    }
+
+    public void setField4(String field4) {
+        this.field4 = field4;
+    }
+
+    public String getField5() {
+        return field5;
+    }
+
+    public void setField5(String field5) {
+        this.field5 = field5;
+    }
 }
