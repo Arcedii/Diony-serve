@@ -26,5 +26,7 @@ public class RouteService {
         return routeRepository.save(route);
     }
 
-    // Дополнительные методы бизнес-логики можно добавить здесь
+    public void deleteRouteById(Long id) {
+        routeRepository.deleteById(id);
+    }
 }

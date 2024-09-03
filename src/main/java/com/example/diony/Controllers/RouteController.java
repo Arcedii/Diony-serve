@@ -4,6 +4,7 @@ package com.example.diony.Controllers;
 import com.example.diony.entity.Route;
 import com.example.diony.services.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +30,11 @@ public class RouteController {
         return routeService.saveRoute(route);
     }
 
-    // Вы можете добавить дополнительные методы для работы с маршрутизаторами (например, удаление или обновление)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRoute(@PathVariable Long id) {
+        routeService.deleteRouteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
 
