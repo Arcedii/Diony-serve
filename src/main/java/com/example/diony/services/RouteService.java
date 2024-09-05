@@ -29,4 +29,8 @@ public class RouteService {
     public void deleteRouteById(Long id) {
         routeRepository.deleteById(id);
     }
+
+    public List<Route> findRoutes(String from, String to) {
+        return routeRepository.findByField1AndField2(from, to);
+    }
 }

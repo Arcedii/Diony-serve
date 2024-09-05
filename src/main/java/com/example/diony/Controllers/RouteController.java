@@ -36,5 +36,10 @@ public class RouteController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/search")
+    public List<Route> searchRoutes(@RequestParam String from, @RequestParam String to) {
+        return routeService.findRoutes(from, to);
+    }
+
 }
 
