@@ -2,6 +2,8 @@ package com.example.diony.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "bilete")
@@ -11,27 +13,59 @@ public class Bilet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dataCumparare;
+    private String fromLocation;
+    private String toLocation;
+    private LocalDate departureDate;
+    private LocalDate returnDate;
+    private int passengers;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pasager_id")
-    private Pasager pasager;
+    // Getters и Setters
+    public Long getId() {
+        return id;
+    }
 
-    @OneToOne
-    @JoinColumn(name = "ruta_id")
-    private Route ruta;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    // Геттеры и сеттеры
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getFromLocation() {
+        return fromLocation;
+    }
 
-    public LocalDateTime getDataCumparare() { return dataCumparare; }
-    public void setDataCumparare(LocalDateTime dataCumparare) { this.dataCumparare = dataCumparare; }
+    public void setFromLocation(String fromLocation) {
+        this.fromLocation = fromLocation;
+    }
 
-    public Pasager getPasager() { return pasager; }
-    public void setPasager(Pasager pasager) { this.pasager = pasager; }
+    public String getToLocation() {
+        return toLocation;
+    }
 
-    public Route getRuta() { return ruta; }
-    public void setRuta(Route ruta) { this.ruta = ruta; }
+    public void setToLocation(String toLocation) {
+        this.toLocation = toLocation;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public int getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(int passengers) {
+        this.passengers = passengers;
+    }
 }
 
