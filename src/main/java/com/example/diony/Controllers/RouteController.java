@@ -41,5 +41,15 @@ public class RouteController {
         return routeService.findRoutes(from, to);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Route> getRouteById(@PathVariable Long id) {
+        Route route = routeService.findById(id);
+        if (route != null) {
+            return ResponseEntity.ok(route);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
 

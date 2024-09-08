@@ -33,4 +33,9 @@ public class RouteService {
     public List<Route> findRoutes(String from, String to) {
         return routeRepository.findByField1AndField2(from, to);
     }
+
+    public Route findById(Long id) {
+        return routeRepository.findById(id).orElse(null);
+    }
+
 }
