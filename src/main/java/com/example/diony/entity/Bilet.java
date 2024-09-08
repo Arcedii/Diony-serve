@@ -19,6 +19,10 @@ public class Bilet {
     private LocalDate returnDate;
     private int passengers;
 
+    private String departureTime;  // Время отправления
+    private String departurePlace; // Место отправления
+    private String price;          // Цена
+
     // Getters и Setters
     public Long getId() {
         return id;
@@ -67,5 +71,28 @@ public class Bilet {
     public void setPassengers(int passengers) {
         this.passengers = passengers;
     }
-}
 
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public String getDeparturePlace() {
+        return departurePlace;
+    }
+
+    public void setDeparturePlace(String departurePlace) {
+        this.departurePlace = departurePlace;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+}
