@@ -11,6 +11,12 @@ public class PassengerService {
     @Autowired
     private PassengerRepository passengerRepository;
 
+    // Метод для поиска пассажира по имени, фамилии, телефону и email
+    public Passenger findPassengerByDetails(String firstName, String lastName, String phoneNumber, String email) {
+        return passengerRepository.findByFirstNameAndLastNameAndPhoneNumberAndEmail(firstName, lastName, phoneNumber, email);
+    }
+
+    // Метод для создания нового пассажира
     public Passenger createPassenger(Passenger passenger) {
         return passengerRepository.save(passenger);
     }

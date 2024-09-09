@@ -23,6 +23,10 @@ public class Bilet {
     private String departurePlace; // Место отправления
     private String price;          // Цена
 
+    @ManyToOne
+    @JoinColumn(name = "passenger_id", nullable = false)
+    private Passenger passenger;
+
     // Getters и Setters
     public Long getId() {
         return id;
@@ -94,5 +98,13 @@ public class Bilet {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
     }
 }
