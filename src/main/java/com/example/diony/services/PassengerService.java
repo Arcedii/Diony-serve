@@ -5,6 +5,8 @@ import com.example.diony.dao.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PassengerService {
 
@@ -19,5 +21,9 @@ public class PassengerService {
     // Метод для создания нового пассажира
     public Passenger createPassenger(Passenger passenger) {
         return passengerRepository.save(passenger);
+    }
+
+    public List<Passenger> getPassengersWithTickets() {
+        return passengerRepository.findAll(); // Пример, если билеты загружаются лениво
     }
 }

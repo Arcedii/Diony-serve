@@ -2,6 +2,7 @@ package com.example.diony.entity;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "passengers")
@@ -15,6 +16,10 @@ public class Passenger implements Serializable {
     private String lastName;
     private String phoneNumber;
     private String email;
+
+    @OneToMany(mappedBy = "passenger", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Bilet> tickets;
+
 
     // Геттеры и сеттеры
     public Long getId() {
@@ -55,5 +60,13 @@ public class Passenger implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Bilet> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Bilet> tickets) {
+        this.tickets = tickets;
     }
 }

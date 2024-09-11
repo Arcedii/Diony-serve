@@ -1,5 +1,6 @@
 package com.example.diony.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
@@ -25,6 +26,7 @@ public class Bilet {
 
     @ManyToOne
     @JoinColumn(name = "passenger_id", nullable = false)
+    @JsonIgnore // Убедись, что это не блокирует передачу данных, если используется неправильно
     private Passenger passenger;
 
     // Getters и Setters

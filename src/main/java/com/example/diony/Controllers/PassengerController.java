@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/passengers")
 public class PassengerController {
@@ -18,4 +20,12 @@ public class PassengerController {
         Passenger createdPassenger = passengerService.createPassenger(passenger);
         return ResponseEntity.ok(createdPassenger);
     }
+
+    // Метод для получения пассажиров с билетами
+    @GetMapping("/with-tickets")
+    public ResponseEntity<List<Passenger>> getPassengersWithTickets() {
+        List<Passenger> passengers = passengerService.getPassengersWithTickets();
+        return ResponseEntity.ok(passengers);
+    }
+
 }
