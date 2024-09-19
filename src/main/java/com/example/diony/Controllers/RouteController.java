@@ -51,5 +51,25 @@ public class RouteController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Route> updateRoute(@PathVariable Long id, @RequestBody Route updatedRoute) {
+        Route existingRoute = routeService.findById(id);
+        if (existingRoute == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Обновляем поля маршрута
+        existingRoute.setField1(updatedRoute.getField1());
+        existingRoute.setField2(updatedRoute.getField2());
+        existingRoute.setField3(updatedRoute.getField3());
+        existingRoute.setField4(updatedRoute.getField4());
+        existingRoute.setField5(updatedRoute.getField5());
+
+        // Сохраняем обновленный маршрут
+        Route savedRoute = routeService.saveRoute(existingRoute);
+        return ResponseEntity.ok(savedRoute);
+    }
+
+
 }
 
