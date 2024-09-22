@@ -1,10 +1,8 @@
 package com.example.diony.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "routes")
@@ -20,7 +18,12 @@ public class Route {
     private String field4; // например, Locul plecării
     private String field5; // например, Pret
 
-    // Геттеры и сеттеры
+    @ElementCollection
+    @CollectionTable(name = "route_stops", joinColumns = @JoinColumn(name = "route_id"))
+    @Column(name = "stop")
+    private List<String> stops; // Список остановок
+
+    // Геттеры и сеттерыц
     public Long getId() {
         return id;
     }
@@ -67,5 +70,13 @@ public class Route {
 
     public void setField5(String field5) {
         this.field5 = field5;
+    }
+
+    public List<String> getStops() {
+        return stops;
+    }
+
+    public void setStops(List<String> stops) {
+        this.stops = stops;
     }
 }

@@ -39,4 +39,18 @@ public class RouteService {
         return routeRepository.findById(id).orElse(null);
     }
 
+    public Route updateRoute(Long id, Route route) {
+        Route existingRoute = findById(id);
+        if (existingRoute != null) {
+            existingRoute.setField1(route.getField1());
+            existingRoute.setField2(route.getField2());
+            existingRoute.setField3(route.getField3());
+            existingRoute.setField4(route.getField4());
+            existingRoute.setField5(route.getField5());
+            existingRoute.setStops(route.getStops()); // Обновляем остановки
+            return saveRoute(existingRoute);
+        }
+        return null;
+    }
+
 }

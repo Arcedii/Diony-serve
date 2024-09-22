@@ -64,6 +64,7 @@ public class RouteController {
         existingRoute.setField3(updatedRoute.getField3());
         existingRoute.setField4(updatedRoute.getField4());
         existingRoute.setField5(updatedRoute.getField5());
+        existingRoute.setStops(updatedRoute.getStops()); // Обновляем остановки
 
         // Сохраняем обновленный маршрут
         Route savedRoute = routeService.saveRoute(existingRoute);
