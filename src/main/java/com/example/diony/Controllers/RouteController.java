@@ -58,15 +58,18 @@ public class RouteController {
             return ResponseEntity.notFound().build();
         }
 
-        // Обновляем поля маршрута
         existingRoute.setDin(updatedRoute.getDin());
         existingRoute.setDestinatia(updatedRoute.getDestinatia());
         existingRoute.setOraPlecarii(updatedRoute.getOraPlecarii());
         existingRoute.setLoculPlecarii(updatedRoute.getLoculPlecarii());
         existingRoute.setPret(updatedRoute.getPret());
-        existingRoute.setStops(updatedRoute.getStops()); // Обновляем остановки
 
-        // Сохраняем обновленный маршрут
+        // Обновляем новые поля
+        existingRoute.setOraSosirii(updatedRoute.getOraSosirii());
+        existingRoute.setLoculSosirii(updatedRoute.getLoculSosirii());
+
+        existingRoute.setStops(updatedRoute.getStops());
+
         Route savedRoute = routeService.saveRoute(existingRoute);
         return ResponseEntity.ok(savedRoute);
     }

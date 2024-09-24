@@ -17,6 +17,8 @@ public class Route {
     private String oraPlecarii; // например, Ora plecării
     private String loculPlecarii; // например, Locul plecării
     private String pret; // например, Pret
+    private String oraSosirii;  // Поле для времени прибытия
+    private String loculSosirii;  // Поле для места прибытия
 
     @ElementCollection
     @CollectionTable(name = "route_stops", joinColumns = @JoinColumn(name = "route_id"))
@@ -71,6 +73,22 @@ public class Route {
 
     public void setPret(String pret) {
         this.pret = pret;
+    }
+
+    public String getOraSosirii() {
+        return oraSosirii;
+    }
+
+    public void setOraSosirii(String oraSosirii) {
+        this.oraSosirii = oraSosirii;
+    }
+
+    public String getLoculSosirii() {
+        return loculSosirii;
+    }
+
+    public void setLoculSosirii(String loculSosirii) {
+        this.loculSosirii = loculSosirii;
     }
 
     public List<String> getStops() {
