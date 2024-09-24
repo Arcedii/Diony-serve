@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface RouteRepository extends JpaRepository<Route, Long> {
-    List<Route> findByField1AndField2(String field1, String field2);
+    List<Route> findByDinAndDestinatia(String din, String destinatia);
+
 }

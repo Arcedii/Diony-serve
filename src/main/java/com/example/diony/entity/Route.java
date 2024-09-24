@@ -12,11 +12,11 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String field1; // например, Din
-    private String field2; // например, Destinatia
-    private String field3; // например, Ora plecării
-    private String field4; // например, Locul plecării
-    private String field5; // например, Pret
+    private String din; // например, Din
+    private String destinatia; // например, Destinatia
+    private String oraPlecarii; // например, Ora plecării
+    private String loculPlecarii; // например, Locul plecării
+    private String pret; // например, Pret
 
     @ElementCollection
     @CollectionTable(name = "route_stops", joinColumns = @JoinColumn(name = "route_id"))
@@ -24,6 +24,7 @@ public class Route {
     private List<String> stops; // Список остановок
 
     // Геттеры и сеттерыц
+    // Геттеры и сеттеры
     public Long getId() {
         return id;
     }
@@ -32,44 +33,44 @@ public class Route {
         this.id = id;
     }
 
-    public String getField1() {
-        return field1;
+    public String getDin() {
+        return din;
     }
 
-    public void setField1(String field1) {
-        this.field1 = field1;
+    public void setDin(String din) {
+        this.din = din;
     }
 
-    public String getField2() {
-        return field2;
+    public String getDestinatia() {
+        return destinatia;
     }
 
-    public void setField2(String field2) {
-        this.field2 = field2;
+    public void setDestinatia(String destinatia) {
+        this.destinatia = destinatia;
     }
 
-    public String getField3() {
-        return field3;
+    public String getOraPlecarii() {
+        return oraPlecarii;
     }
 
-    public void setField3(String field3) {
-        this.field3 = field3;
+    public void setOraPlecarii(String oraPlecarii) {
+        this.oraPlecarii = oraPlecarii;
     }
 
-    public String getField4() {
-        return field4;
+    public String getLoculPlecarii() {
+        return loculPlecarii;
     }
 
-    public void setField4(String field4) {
-        this.field4 = field4;
+    public void setLoculPlecarii(String loculPlecarii) {
+        this.loculPlecarii = loculPlecarii;
     }
 
-    public String getField5() {
-        return field5;
+    public String getPret() {
+        return pret;
     }
 
-    public void setField5(String field5) {
-        this.field5 = field5;
+    public void setPret(String pret) {
+        this.pret = pret;
     }
 
     public List<String> getStops() {

@@ -59,11 +59,11 @@ public class RouteController {
         }
 
         // Обновляем поля маршрута
-        existingRoute.setField1(updatedRoute.getField1());
-        existingRoute.setField2(updatedRoute.getField2());
-        existingRoute.setField3(updatedRoute.getField3());
-        existingRoute.setField4(updatedRoute.getField4());
-        existingRoute.setField5(updatedRoute.getField5());
+        existingRoute.setDin(updatedRoute.getDin());
+        existingRoute.setDestinatia(updatedRoute.getDestinatia());
+        existingRoute.setOraPlecarii(updatedRoute.getOraPlecarii());
+        existingRoute.setLoculPlecarii(updatedRoute.getLoculPlecarii());
+        existingRoute.setPret(updatedRoute.getPret());
         existingRoute.setStops(updatedRoute.getStops()); // Обновляем остановки
 
         // Сохраняем обновленный маршрут

@@ -32,8 +32,9 @@ public class RouteService {
     }
 
     public List<Route> findRoutes(String from, String to) {
-        return routeRepository.findByField1AndField2(from, to);
+        return routeRepository.findByDinAndDestinatia(from, to);
     }
+
 
     public Route findById(Long id) {
         return routeRepository.findById(id).orElse(null);
@@ -42,11 +43,11 @@ public class RouteService {
     public Route updateRoute(Long id, Route route) {
         Route existingRoute = findById(id);
         if (existingRoute != null) {
-            existingRoute.setField1(route.getField1());
-            existingRoute.setField2(route.getField2());
-            existingRoute.setField3(route.getField3());
-            existingRoute.setField4(route.getField4());
-            existingRoute.setField5(route.getField5());
+            existingRoute.setDin(route.getDin());
+            existingRoute.setDestinatia(route.getDestinatia());
+            existingRoute.setOraPlecarii(route.getOraPlecarii());
+            existingRoute.setLoculPlecarii(route.getLoculPlecarii());
+            existingRoute.setPret(route.getPret());
             existingRoute.setStops(route.getStops()); // Обновляем остановки
             return saveRoute(existingRoute);
         }
