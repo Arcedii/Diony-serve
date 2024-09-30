@@ -20,10 +20,9 @@ public class Route {
     private String oraSosirii;  // Поле для времени прибытия
     private String loculSosirii;  // Поле для места прибытия
 
-    @ElementCollection
-    @CollectionTable(name = "route_stops", joinColumns = @JoinColumn(name = "route_id"))
-    @Column(name = "stop")
-    private List<String> stops; // Список остановок
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "route_id")
+    private List<TransitLocation> transitLocations;
 
     // Геттеры и сеттерыц
     // Геттеры и сеттеры
@@ -91,11 +90,11 @@ public class Route {
         this.loculSosirii = loculSosirii;
     }
 
-    public List<String> getStops() {
-        return stops;
+    public List<TransitLocation> getTransitLocations() {
+        return transitLocations;
     }
 
-    public void setStops(List<String> stops) {
-        this.stops = stops;
+    public void setTransitLocations(List<TransitLocation> transitLocations) {
+        this.transitLocations = transitLocations;
     }
 }

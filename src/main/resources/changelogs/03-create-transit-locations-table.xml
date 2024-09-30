@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="3" author="your-name">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="transit_locations"/>
+            </not>
+        </preConditions>
+        <createTable tableName="transit_locations">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="location" type="varchar(255)"/>
+            <column name="time" type="varchar(255)"/>
+            <column name="route_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="transit_locations"
+                baseColumnNames="route_id"
+                constraintName="fk_transit_locations_routes"
+                referencedTableName="routes"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

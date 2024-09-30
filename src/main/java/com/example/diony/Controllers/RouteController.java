@@ -63,17 +63,17 @@ public class RouteController {
         existingRoute.setOraPlecarii(updatedRoute.getOraPlecarii());
         existingRoute.setLoculPlecarii(updatedRoute.getLoculPlecarii());
         existingRoute.setPret(updatedRoute.getPret());
-
-        // Обновляем новые поля
         existingRoute.setOraSosirii(updatedRoute.getOraSosirii());
         existingRoute.setLoculSosirii(updatedRoute.getLoculSosirii());
 
-        existingRoute.setStops(updatedRoute.getStops());
+        // Обновляем список остановок
+        existingRoute.getTransitLocations().clear();
+        if (updatedRoute.getTransitLocations() != null) {
+            existingRoute.getTransitLocations().addAll(updatedRoute.getTransitLocations());
+        }
 
         Route savedRoute = routeService.saveRoute(existingRoute);
         return ResponseEntity.ok(savedRoute);
     }
-
-
 }
 

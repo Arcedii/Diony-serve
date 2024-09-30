@@ -26,7 +26,6 @@ public class RouteService {
         return routeRepository.save(route);
     }
 
-
     public void deleteRouteById(Long id) {
         routeRepository.deleteById(id);
     }
@@ -34,7 +33,6 @@ public class RouteService {
     public List<Route> findRoutes(String from, String to) {
         return routeRepository.findByDinAndDestinatia(from, to);
     }
-
 
     public Route findById(Long id) {
         return routeRepository.findById(id).orElse(null);
@@ -48,10 +46,17 @@ public class RouteService {
             existingRoute.setOraPlecarii(route.getOraPlecarii());
             existingRoute.setLoculPlecarii(route.getLoculPlecarii());
             existingRoute.setPret(route.getPret());
-            existingRoute.setStops(route.getStops()); // Обновляем остановки
+            existingRoute.setOraSosirii(route.getOraSosirii());
+            existingRoute.setLoculSosirii(route.getLoculSosirii());
+
+            // Обновляем список остановок
+            existingRoute.getTransitLocations().clear();
+            if (route.getTransitLocations() != null) {
+                existingRoute.getTransitLocations().addAll(route.getTransitLocations());
+            }
+
             return saveRoute(existingRoute);
         }
         return null;
     }
-
 }

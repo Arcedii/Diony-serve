@@ -7,5 +7,8 @@
 
     <include file="01-create-routes-table.xml" relativeToChangelogFile="true"/>
     <include file="02-create-bilete-table.xml" relativeToChangelogFile="true"/>
+    <!-- db.changelog-master.xml -->
+    <include file="03-create-transit-locations-table.xml" relativeToChangelogFile="true"/>
+
 
 </databaseChangeLog>
