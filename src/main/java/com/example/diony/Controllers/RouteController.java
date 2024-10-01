@@ -60,11 +60,11 @@ public class RouteController {
 
         existingRoute.setDin(updatedRoute.getDin());
         existingRoute.setDestinatia(updatedRoute.getDestinatia());
-        existingRoute.setOraPlecarii(updatedRoute.getOraPlecarii());
-        existingRoute.setLoculPlecarii(updatedRoute.getLoculPlecarii());
+        existingRoute.setLoculPlecarii(updatedRoute.getLoculPlecarii()); // Здесь меняем
+        existingRoute.setLoculSosirii(updatedRoute.getLoculSosirii()); // Здесь меняем
         existingRoute.setPret(updatedRoute.getPret());
+        existingRoute.setOraPlecarii(updatedRoute.getOraPlecarii());
         existingRoute.setOraSosirii(updatedRoute.getOraSosirii());
-        existingRoute.setLoculSosirii(updatedRoute.getLoculSosirii());
 
         // Обновляем список остановок
         existingRoute.getTransitLocations().clear();

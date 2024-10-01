@@ -1,6 +1,7 @@
 package com.example.diony.entity;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
@@ -12,13 +13,26 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String din; // например, Din
-    private String destinatia; // например, Destinatia
-    private String oraPlecarii; // например, Ora plecării
-    private String loculPlecarii; // например, Locul plecării
-    private String pret; // например, Pret
-    private String oraSosirii;  // Поле для времени прибытия
-    private String loculSosirii;  // Поле для места прибытия
+    @NotNull
+    private String din;
+
+    @NotNull
+    private String destinatia;
+
+    @NotNull
+    private String oraPlecarii;
+
+    @NotNull
+    private String loculPlecarii;
+
+    @NotNull
+    private String pret;
+
+    @NotNull
+    private String oraSosirii;
+
+    @NotNull
+    private String loculSosirii;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "route_id")

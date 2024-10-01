@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="2-create-route-table" author="autor">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="routes"/>
+            </not>
+        </preConditions>
+        <createTable tableName="routes">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="locul_plecarii" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="locul_sosirii" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ora_plecarii" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ora_sosirii" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="numar_ore_drum" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pret" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Новый changeSet для удаления полей -->
+    <changeSet id="4-remove-oras-plecare-venire" author="autor">
+        <dropColumn tableName="routes" columnName="oras_plecare"/>
+        <dropColumn tableName="routes" columnName="oras_venire"/>
+    </changeSet>
+</databaseChangeLog>
