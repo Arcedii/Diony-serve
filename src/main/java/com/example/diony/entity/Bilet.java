@@ -29,6 +29,16 @@ public class Bilet {
     @JsonIgnore // Убедись, что это не блокирует передачу данных, если используется неправильно
     private Passenger passenger;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        System.out.println("CreatedAt set to: " + this.createdAt);
+    }
+
+
     // Getters и Setters
     public Long getId() {
         return id;
@@ -108,5 +118,15 @@ public class Bilet {
 
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
+    }
+
+    // Добавьте геттер
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    // Добавьте сеттер (опционально, так как createdAt не должно изменяться после создания)
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
