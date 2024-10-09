@@ -2,6 +2,7 @@ package com.example.diony.entity;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,15 @@ public class Passenger implements Serializable {
     @OneToMany(mappedBy = "passenger", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Bilet> tickets;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date
+            createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
 
     // Геттеры и сеттеры
     public Long getId() {
@@ -68,5 +78,13 @@ public class Passenger implements Serializable {
 
     public void setTickets(List<Bilet> tickets) {
         this.tickets = tickets;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

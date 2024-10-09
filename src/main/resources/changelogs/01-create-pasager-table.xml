@@ -22,6 +22,9 @@
             <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>
