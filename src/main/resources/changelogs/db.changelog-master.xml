@@ -9,5 +9,7 @@
     <include file="02-create-route-table.xml" relativeToChangelogFile="true"/>
     <include file="03-create-bilete-table.xml" relativeToChangelogFile="true"/>
     <include file="04-create-transit-locations-table.xml" relativeToChangelogFile="true"/>
+    <include file="05-create-options-table.xml" relativeToChangelogFile="true"/>
+
 
 </databaseChangeLog>
