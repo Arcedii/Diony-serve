@@ -36,9 +36,4 @@
         </createTable>
     </changeSet>
 
-    <!-- Новый changeSet для удаления полей -->
-    <changeSet id="4-remove-oras-plecare-venire" author="autor">
-        <dropColumn tableName="routes" columnName="oras_plecare"/>
-        <dropColumn tableName="routes" columnName="oras_venire"/>
-    </changeSet>
 </databaseChangeLog>
