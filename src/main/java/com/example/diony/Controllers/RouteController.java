@@ -72,8 +72,12 @@ public class RouteController {
             existingRoute.getTransitLocations().addAll(updatedRoute.getTransitLocations());
         }
 
+        // ОБНОВЛЯЕМ visible
+        existingRoute.setVisible(updatedRoute.isVisible());
+
         Route savedRoute = routeService.saveRoute(existingRoute);
         return ResponseEntity.ok(savedRoute);
     }
+
 }
 

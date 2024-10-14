@@ -23,8 +23,10 @@ public class RouteService {
     }
 
     public Route saveRoute(Route route) {
+        System.out.println("Сохраняем маршрут с visible = " + route.isVisible()); // Логируем значение перед сохранением
         return routeRepository.save(route);
     }
+
 
     public void deleteRouteById(Long id) {
         routeRepository.deleteById(id);
@@ -59,4 +61,5 @@ public class RouteService {
         }
         return null;
     }
+
 }

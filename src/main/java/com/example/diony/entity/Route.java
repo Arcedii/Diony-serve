@@ -38,7 +38,9 @@ public class Route {
     @JoinColumn(name = "route_id")
     private List<TransitLocation> transitLocations;
 
-    // Геттеры и сеттерыц
+    @NotNull
+    private boolean visible = true; // По умолчанию true
+
     // Геттеры и сеттеры
     public Long getId() {
         return id;
@@ -110,5 +112,13 @@ public class Route {
 
     public void setTransitLocations(List<TransitLocation> transitLocations) {
         this.transitLocations = transitLocations;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

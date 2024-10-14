@@ -36,4 +36,13 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="3-add-visible-column-to-routes" author="autor">
+        <addColumn tableName="routes">
+            <column name="visible" type="BOOLEAN" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+
 </databaseChangeLog>
