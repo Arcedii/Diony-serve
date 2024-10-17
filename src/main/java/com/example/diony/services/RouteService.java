@@ -36,6 +36,33 @@ public class RouteService {
         return routeRepository.findByDinAndDestinatia(from, to);
     }
 
+    public List<Route> findAndCalculateRoutes(String from, String to, boolean isReturn) {
+        List<Route> routes = routeRepository.findByDinAndDestinatia(from, to);
+
+        // Логируем исходные цены до изменений
+        routes.forEach(route ->
+                System.out.println("Исходная цена маршрута: " + route.getPret())
+        );
+
+        if (isReturn) {
+            routes.forEach(route -> {
+                double originalPrice = Double.parseDouble(route.getPret());
+
+                // Умножаем и округляем до целого числа
+                int updatedPrice = (int) Math.round(originalPrice * 2);
+                route.setPret(String.valueOf(updatedPrice));
+
+                // Логируем обновленную цену
+                System.out.println("Удвоенная цена маршрута (int): " + updatedPrice);
+            });
+        }
+
+        return routes;
+    }
+
+
+
+
     public Route findById(Long id) {
         return routeRepository.findById(id).orElse(null);
     }

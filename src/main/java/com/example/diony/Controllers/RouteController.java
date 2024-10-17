@@ -37,9 +37,16 @@ public class RouteController {
     }
 
     @GetMapping("/search")
-    public List<Route> searchRoutes(@RequestParam String from, @RequestParam String to) {
-        return routeService.findRoutes(from, to);
+    public List<Route> searchRoutes(
+            @RequestParam String from,
+            @RequestParam String to,
+            @RequestParam(required = false) String returnDate) {
+
+        boolean isReturn = (returnDate != null && !returnDate.isEmpty());
+        return routeService.findAndCalculateRoutes(from, to, isReturn);
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Route> getRouteById(@PathVariable Long id) {
