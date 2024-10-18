@@ -6,6 +6,7 @@ import com.example.diony.entity.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,6 +37,8 @@ public class RouteService {
         return routeRepository.findByDinAndDestinatia(from, to);
     }
 
+
+
     public List<Route> findAndCalculateRoutes(String from, String to, boolean isReturn) {
         List<Route> routes = routeRepository.findByDinAndDestinatia(from, to);
 
@@ -60,6 +63,13 @@ public class RouteService {
         return routes;
     }
 
+
+    // Метод для обновления исключенных дат
+    public Route updateExcludedDates(Long routeId, List<LocalDate> excludedDates) {
+        Route route = findById(routeId);  // Найдём маршрут по ID
+        route.setExcludedDates(excludedDates);  // Обновим исключённые даты
+        return routeRepository.save(route);  // Сохраним изменения
+    }
 
 
 

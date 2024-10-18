@@ -10,6 +10,7 @@
     <include file="03-create-bilete-table.xml" relativeToChangelogFile="true"/>
     <include file="04-create-transit-locations-table.xml" relativeToChangelogFile="true"/>
     <include file="05-create-options-table.xml" relativeToChangelogFile="true"/>
+    <include file="06-create-excluded-dates-table.xml" relativeToChangelogFile="true"/>
 
 
 </databaseChangeLog>

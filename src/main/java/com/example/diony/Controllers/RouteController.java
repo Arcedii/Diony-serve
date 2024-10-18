@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/routes")
@@ -84,6 +88,43 @@ public class RouteController {
 
         Route savedRoute = routeService.saveRoute(existingRoute);
         return ResponseEntity.ok(savedRoute);
+    }
+    // Новый метод для обновления исключенных дат
+    @PutMapping("/{id}/excluded-dates")
+    public ResponseEntity<Route> updateExcludedDates(
+            @PathVariable Long id,
+            @RequestBody List<String> newExcludedDates) {
+
+        List<LocalDate> parsedDates = newExcludedDates.stream()
+                .map(date -> LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE))
+                .collect(Collectors.toList());
+
+        Route route = routeService.findById(id);
+        if (route == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        route.setExcludedDates(parsedDates);
+        Route updatedRoute = routeService.saveRoute(route);
+
+        return ResponseEntity.ok(updatedRoute);
+    }
+
+
+
+    // Метод для получения исключённых дат
+    @GetMapping("/{id}/excluded-dates")
+    public ResponseEntity<List<String>> getExcludedDates(@PathVariable Long id) {
+        Route route = routeService.findById(id);
+        if (route == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<String> excludedDates = route.getExcludedDates().stream()
+                .map(LocalDate::toString)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(excludedDates);
     }
 
 }

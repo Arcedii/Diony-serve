@@ -3,6 +3,8 @@ package com.example.diony.entity;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,6 +39,11 @@ public class Route {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "route_id")
     private List<TransitLocation> transitLocations;
+
+    @ElementCollection
+    @CollectionTable(name = "excluded_dates", joinColumns = @JoinColumn(name = "route_id"))
+    @Column(name = "excluded_date")
+    private List<LocalDate> excludedDates = new ArrayList<>();
 
     @NotNull
     private boolean visible = true; // По умолчанию true
@@ -120,5 +127,13 @@ public class Route {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public List<LocalDate> getExcludedDates() {
+        return excludedDates;
+    }
+
+    public void setExcludedDates(List<LocalDate> excludedDates) {
+        this.excludedDates = excludedDates;
     }
 }
