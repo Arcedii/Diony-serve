@@ -127,6 +127,23 @@ public class RouteController {
         return ResponseEntity.ok(excludedDates);
     }
 
+    @GetMapping("/excluded-dates/all")
+    public ResponseEntity<List<Map<String, Object>>> getAllExcludedDates() {
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        List<Route> routes = routeService.findAllRoutes();
+        for (Route route : routes) {
+            for (LocalDate excludedDate : route.getExcludedDates()) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("routeId", route.getId());
+                map.put("excludedDate", excludedDate.toString());
+                result.add(map);
+            }
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
 
 }
 
