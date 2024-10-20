@@ -26,11 +26,10 @@ public class BiletController {
     // Создание билета с проверкой пассажира
     @PostMapping
     public ResponseEntity<Bilet> createBilet(@RequestBody BiletRequest biletRequest) {
-        Passenger
-                passenger = biletRequest.getPassenger();
+        Passenger passenger = biletRequest.getPassenger();
         Bilet bilet = biletRequest.getBilet();
 
-        // Проверяем, существует ли пассажир
+        // Проверка существования пассажира
         Passenger existingPassenger = passengerService.findPassengerByDetails(
                 passenger.getFirstName(),
                 passenger.getLastName(),
@@ -39,17 +38,21 @@ public class BiletController {
         );
 
         if (existingPassenger != null) {
-            // Пассажир найден, связываем билет с ним
             bilet.setPassenger(existingPassenger);
         } else {
-            // Пассажир не найден, создаем нового пассажира
             Passenger newPassenger = passengerService.createPassenger(passenger);
             bilet.setPassenger(newPassenger);
         }
 
-        // Создаем и сохраняем билет
+        // Устанавливаем данные маршрута возврата
+        bilet.setReturnRouteFrom(biletRequest.getBilet().getReturnRouteFrom());
+        bilet.setReturnRouteTo(biletRequest.getBilet().getReturnRouteTo());
+        bilet.setReturnRouteDate(biletRequest.getBilet().getReturnRouteDate());
+        bilet.setReturnDepartureTime(biletRequest.getBilet().getReturnDepartureTime());
+
         Bilet createdBilet = biletService.createBilet(bilet);
         return ResponseEntity.ok(createdBilet);
     }
+
 
 }

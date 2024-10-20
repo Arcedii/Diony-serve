@@ -32,6 +32,11 @@ public class Bilet {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    private String returnRouteFrom;   // Пункт отправления маршрута возврата
+    private String returnRouteTo;     // Пункт назначения маршрута возврата
+    private LocalDate returnRouteDate;     // Дата возврата
+    private String returnDepartureTime; // Время отправления маршрута возврата
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -128,5 +133,38 @@ public class Bilet {
     // Добавьте сеттер (опционально, так как createdAt не должно изменяться после создания)
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+
+    public String getReturnRouteFrom() {
+        return returnRouteFrom;
+    }
+
+    public void setReturnRouteFrom(String returnRouteFrom) {
+        this.returnRouteFrom = returnRouteFrom;
+    }
+
+    public String getReturnRouteTo() {
+        return returnRouteTo;
+    }
+
+    public void setReturnRouteTo(String returnRouteTo) {
+        this.returnRouteTo = returnRouteTo;
+    }
+
+    public LocalDate getReturnRouteDate() {
+        return returnRouteDate;
+    }
+
+    public void setReturnRouteDate(LocalDate returnRouteDate) {
+        this.returnRouteDate = returnRouteDate;
+    }
+
+    public String getReturnDepartureTime() {
+        return returnDepartureTime;
+    }
+
+    public void setReturnDepartureTime(String returnDepartureTime) {
+        this.returnDepartureTime = returnDepartureTime;
     }
 }

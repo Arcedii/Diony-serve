@@ -35,4 +35,19 @@
                                  onDelete="CASCADE" onUpdate="CASCADE"/>
     </changeSet>
 
+    <changeSet id="4-add-return-route-fields" author="autor">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="bilete" columnName="return_route_from"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="bilete">
+            <column name="return_route_from" type="VARCHAR(255)"/>
+            <column name="return_route_to" type="VARCHAR(255)"/>
+            <column name="return_date" type="DATE"/>
+            <column name="return_departure_time" type="VARCHAR(50)"/>
+        </addColumn>
+    </changeSet>
+
+
 </databaseChangeLog>
