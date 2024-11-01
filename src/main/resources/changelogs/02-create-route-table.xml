@@ -27,9 +27,6 @@
             <column name="ora_sosirii" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="numar_ore_drum" type="INTEGER">
-                <constraints nullable="false"/>
-            </column>
             <column name="pret" type="DECIMAL(10, 2)">
                 <constraints nullable="false"/>
             </column>
